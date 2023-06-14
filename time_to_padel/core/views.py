@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from .models import torneo
 from inscripcion.forms import InscripcionForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 class TorneoListView(ListView):
     model = torneo
@@ -25,7 +25,7 @@ class TorneoDetailView(DetailView):
             inscripcion = form.save(commit=False)
             inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
             inscripcion.save()
-            return HttpResponseRedirect("https://timetopadel.pythonanywhere.com/")
+            return HttpResponse("Hola mundo")
        
     
   
