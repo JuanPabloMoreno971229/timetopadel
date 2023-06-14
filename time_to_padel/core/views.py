@@ -21,14 +21,12 @@ class TorneoDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
-        if form.is_valid():
-            torneo_id = self.kwargs['pk']
-            inscripcion = form.save(commit=False)
-            inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
-            inscripcion.save()
-            return HttpResponse('Hola, mundo!')
-        else:
-            return HttpResponse('Hola, mundo =(!')
+        torneo_id = self.kwargs['pk']
+        inscripcion = form.save(commit=False)
+        inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
+        inscripcion.save()
+        return HttpResponse('Hola, mundo!')
+        
     
     
     
