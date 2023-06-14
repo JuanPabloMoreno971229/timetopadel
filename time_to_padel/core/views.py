@@ -25,9 +25,8 @@ class TorneoDetailView(DetailView):
             inscripcion = form.save(commit=False)
             inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
             inscripcion.save()
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-            return self.render_to_response(self.get_context_data(form=form))
+            return HttpResponseRedirect("Hola mundo")
+       
     
   
     
