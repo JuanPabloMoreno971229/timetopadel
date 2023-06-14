@@ -1,13 +1,5 @@
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
-from .models import torneo
-from inscripcion.forms import InscripcionForm
-from django.http import HttpResponseRedirect
-
-class TorneoListView(ListView):
-    model = torneo
+from django.urls import reverse
 
 class TorneoDetailView(DetailView):
     model = torneo
@@ -23,17 +15,16 @@ class TorneoDetailView(DetailView):
         if form.is_valid():
             torneo_id = self.kwargs['pk']
             inscripcion = form.save(commit=False)
-            inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
+            inscripcion.tournament_id = torneo_id
             inscripcion.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form))
 
     def get_success_url(self):
-        torneo_instance = self.get_object()
-        return reverse_lazy('torneos:torneo', args=[torneo_instance.pk]) + '?ok'
+        torneo_id = self.kwargs['pk']
+        return reverse('torneos:torneo', args=[torneo_id]) + '?ok'
 
-        
         
     
     
