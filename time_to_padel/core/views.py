@@ -25,7 +25,7 @@ class TorneoDetailView(DetailView):
             inscripcion = form.save(commit=False)
             inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
             inscripcion.save()
-            return HttpResponseRedirect("Hola mundo")
+            return HttpResponseRedirect("https://timetopadel.pythonanywhere.com/")
        
     
   
