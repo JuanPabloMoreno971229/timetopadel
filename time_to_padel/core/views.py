@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from .models import torneo
 from inscripcion.forms import InscripcionForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+
 
 class TorneoListView(ListView):
     model = torneo
