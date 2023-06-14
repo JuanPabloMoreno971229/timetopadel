@@ -22,7 +22,7 @@ class TorneoDetailView(DetailView):
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':
             form = InscripcionForm(request.POST)
-            torneo_id = request.kwargs['pk']
+            torneo_id = request.GET.get('pk')
             inscripcion = form.save(commit=False)
             inscripcion.tournament_id = torneo_id
             inscripcion.save()
