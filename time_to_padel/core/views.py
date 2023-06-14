@@ -25,7 +25,7 @@ class TorneoDetailView(DetailView):
             inscripcion = form.save(commit=False)
             inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
             inscripcion.save()
-            return redirect('torneos' + '?ok')
+            return render(request, 'core/torneo_list.html', context)
         else:
             print("Formulario no valido")
     
