@@ -30,7 +30,8 @@ class TorneoDetailView(DetailView):
             return self.render_to_response(self.get_context_data(form=form))
     
     def get_success_url(self):
-        return reverse('torneos:torneo', args=[self.get_object().id]) + '?ok'
+        torneo_id = self.get_object().id
+        return reverse('torneos:torneo', args=[torneo_id]) + '?ok'
     
     
     
