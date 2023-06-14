@@ -4,8 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from .models import torneo
 from inscripcion.forms import InscripcionForm
-from django.http import HttpResponseRedirect, HttpResponse
-
+from django.http import HttpResponseRedirect
 
 class TorneoListView(ListView):
     model = torneo
@@ -19,14 +18,21 @@ class TorneoDetailView(DetailView):
         context['form'] = self.form_class()
         return context
 
-    form_class = InscripcionForm
-    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            torneo_id = self.kwargs['pk']
+            inscripcion = form.save(commit=False)
+            inscripcion.tournament_id = torneo_id  # Asignar el valor de la clave foránea
+            inscripcion.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
 
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-    
-   
+    def get_success_url(self):
+        torneo_instance = self.get_object()
+        return reverse_lazy('torneos:torneo', args=[torneo_instance.pk]) + '?ok'
+
         
         
     
