@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Time to Padel</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{% static 'core/css/templatemo-style.css' %}" rel="stylesheet" />
+</head>
+<!-- Logo & Site Name -->
+<body> 
+	<div class="container">
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'core/img/bg.png' %}">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title">Time to padel</h1>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<!--Content ============================================================================================== -->
+    {% block content %}{% endblock %}
+<!--Content ============================================================================================== -->
+    <footer class="tm-footer text-center">
+        <p>Copyright &copy; TMT 2023 
+        
+        | Design: <a rel="nofollow" href="https://templatemo.com">TMT</a></p>
+	</footer>
+    <script src="{% static 'core/js/jquery.min.js' %}"></script>
+	<script src="{% static 'core/js/parallax.min.js' %}"></script>
+    </div>
+</body>
+</html>

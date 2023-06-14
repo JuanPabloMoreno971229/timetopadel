@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}{% block content %} {% load static %}{% load humanize %}
+</body>
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">{{torneo.name}}</h2>
+			</header>
+			<div class="tm-container-inner-2 tm-contact-section">
+				<div class="row">
+					<div class="col-md-6">
+						<form action="" method="POST" class="tm-contact-form">
+                            {% csrf_token %}
+					        <div class="form-group">
+					          {{form.name_1}}
+					        </div>
+					        <div class="form-group">
+					          {{form.lastname_1}}
+					        </div>
+					        <div class="form-group">
+					          {{form.phone_1}}
+					        </div>
+					        <div class="form-group">
+					          {{form.mail_1}}
+					        </div>
+					        <div class="form-group">
+					          {{form.name_2}}
+					        </div>
+					        <div class="form-group">
+					          {{form.lastname_2}}
+					        </div>
+					        <div class="form-group">
+					          {{form.phone_2}}
+					        </div>
+					        <div class="form-group">
+					          {{form.mail_2}}
+					        </div>
+					        <div class="form-group">
+					          {{form.category}}
+					        </div>
+					        <div class="form-group">
+					          {{form.level}}
+					        </div>
+					        <div class="form-group tm-d-flex">
+					          <button type="submit" class="tm-btn tm-btn-success tm-btn-right">
+					            Inscribirse
+					          </button>
+						</form>
+					</div>
+					<div class="col-md-6">
+						<div class="tm-address-box">
+							<h4 class="tm-info-title tm-text-success">Detalles</h4>
+							<address>
+                                <img src="{{torneo.image.url}}" width="200px" height="200px"><br>
+								<p style="font-weight: bold;"><p style="font-weight: bold;">Fecha de inicio:</p>{{torneo.start_date}}<br>
+								<p style="font-weight: bold;">Fecha de fin:</p>{{torneo.end_date}}<br>
+								<p style="font-weight: bold;">Hora de inicio:</p>{{torneo.hour|date:'h:i a'}}<br>
+								<p style="font-weight: bold;">Lugar:</p>{{torneo.place}}<br>
+								<p style="font-weight: bold;">Categoría:</p>{{torneo.category}}<br>
+								<p style="font-weight: bold;">Precio:</p>${{torneo.price |floatformat:0|intcomma }}                               
+							</address>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+{% endblock %}
