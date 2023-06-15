@@ -1,5 +1,10 @@
 {% extends 'core/base.html' %}{% block content %} {% load static %}{% load humanize %}
 </body>
+		{% if 'ok' in request.GET %}
+            <p style="color:green;">
+              Inscripción realizada completamente 
+            </p>
+        {% endif %}
 		<main>
 			<header class="row tm-welcome-section">
 				<h2 class="col-12 text-center tm-section-title">{{torneo.name}}</h2>
